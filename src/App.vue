@@ -1,16 +1,19 @@
 <template>
   <div>
     <header-movie />
+    <list-movies />
   </div>
 </template>
 
 <script>
 import HeaderMovie from "@/components/Header.vue"
+import ListMovies from "@/components/Movies.vue"
 
 export default {
   name: 'App',
   components: {
-    HeaderMovie
+    HeaderMovie,
+    ListMovies
   }
 }
 </script>
