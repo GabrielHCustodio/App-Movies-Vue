@@ -5,12 +5,18 @@
             <p>{{movies.title}}</p>
             <span>{{movies.sinopse}}</span>
          </div>
+         <api-movies />
     </div>
 </template>
 
 <script>
+import ApiMovies from "@/components/ApiMovies.vue"
+
 export default {
     name: 'ListMovies',
+    components: {
+        ApiMovies
+    },
     data() {
         return {
             arrayMovies: [
