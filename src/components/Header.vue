@@ -4,26 +4,18 @@
             
         </div>
 
-        <div class="header-input">
-            <input type="text" placeholder="Nome do filme..." v-model="nomeFilme">
-            <img :src="pesq" alt="" @click="pesquisarNome">
+        <div>
+            <search-movie />
         </div>
     </div>
 </template>
 
 <script>
+import searchMovie from '@/components/SearchMovie.vue'
 export default {
     name: 'HeaderMovie',
-    data() {
-        return {
-            pesq: '/assets/pesquisa.png',
-            nomeFilme: ''
-        }
-    },
-    methods: {
-        pesquisarNome() {
-            console.log(this.nomeFilme)
-        }
+    components: {
+        searchMovie
     }
 }
 </script>
@@ -43,24 +35,5 @@ export default {
     height: 60px;
     background: #ccc;
     margin-left: 30px;
-}
-
-.header-input {
-    margin-right: 30px;
-    display: flex;
-    align-items: center;
-}
-
-.header-input input[type=text] {
-    width: 250px;
-    height: 27px;
-    padding: 10px;
-    outline: none;
-}
-
-.header-input img {
-    margin-left: 10px;
-    width: 35px;
-    cursor: pointer;
 }
 </style>

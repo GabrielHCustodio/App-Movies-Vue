@@ -1,47 +1,40 @@
 <template>
     <div class="movies">
-        <div v-for="(movies , index) in arrayMovies" :key="index" class="list">
-            <img :src="movies.image" alt="">
-            <p>{{movies.title}}</p>
-            <span>{{movies.sinopse}}</span>
+        <div v-for="m in movies" :key="m.rank" class="box">
+            <img class="image" :src="m.image" alt="">
+            <p class="title">{{m.title}}</p>
          </div>
-         <api-movies />
     </div>
 </template>
 
 <script>
-import ApiMovies from "@/components/ApiMovies.vue"
-
 export default {
     name: 'ListMovies',
-    components: {
-        ApiMovies
-    },
     data() {
         return {
-            arrayMovies: [
-                {
-                    image: "/assets/mercenarios.jpg",
-                    title: "Mercenários",
-                    sinopse: "Um grupo de mercenários são contratados pelo governo para resolverem alguns problemas."
-                },
-                {
-                    image: "/assets/invocacaoMal.jpg",
-                    title: "Invocação do mal",
-                    sinopse: "Uma casa assombrada, o que será que aconteceu aqui? Ed e Lorraine vão descobrir."
-                },
-                {
-                    image: "/assets/vingadores.jpg",
-                    title: "Vingadores",
-                    sinopse: "Os heróis mais poderosos da terá se unem contra um vilão em potencial."
-                },
-                {
-                    image: "/assets/velozesFuriosos.webp",
-                    title: "Velozes e furiosos",
-                    sinopse: "Conheça as verdades por trás das grandes corridas ilegais com esses pessoal especial."
-                }
-            ]
+            movies: ''
         }
+    },
+    mounted() {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+ 
+        fetch('https://imdb-api.com/en/API/Top250Movies/k_pm2rbkhw', requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            this.movies = result.items
+
+            console.log(this.movies)
+        })
+        .catch(error => console.log('error', error));
+
+        this.$emitter.on('filterMovies' , (nameMovie) => {
+                let search = this.movies.filter(req => req.title.toLowerCase().includes(nameMovie.toLowerCase()))
+
+                console.log(search)
+        })
     }
 }
 </script>
@@ -49,35 +42,32 @@ export default {
 <style scoped>
     .movies {
         display: flex;
-        flex-direction: row;
-        padding: 10px;
-        background: #ccc;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
     }
 
-    .list {
+    .box {
         width: 200px;
-        height: 300px;
-        background-color: rgb(236, 236, 236);
-        margin-left: 10px;
+        height: 330px;
+        background-color: #ccc;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        cursor: pointer;
+        text-align: center;
+        margin: 10px 10px 10px 0;
     }
 
-    .list img {
+    .box .image{
+        margin-top: 20px;
         width: 150px;
-        height: 230px;
     }
 
-    .list p {
-        margin-top: 10px;
+    .box .title {
+        color: black;
         font-size: 1.3rem;
         font-weight: bold;
-    }
-
-    .list span {
-        display: none;
+        margin-top: 10px;
     }
 </style>
