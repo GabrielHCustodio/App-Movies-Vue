@@ -12,7 +12,8 @@ export default {
     name: 'ListMovies',
     data() {
         return {
-            movies: ''
+            movies: '',
+            moviesTitle: ''
         }
     },
     mounted() {
@@ -21,19 +22,24 @@ export default {
             redirect: 'follow'
         };
  
-        fetch('https://imdb-api.com/en/API/Top250Movies/k_pm2rbkhw', requestOptions)
+        fetch('https://imdb-api.com/en/API/Top250Movies/k_3r6o2gqv', requestOptions)
         .then(response => response.json())
         .then(result => {
+            this.moviesTitle = result.items
             this.movies = result.items
-
-            console.log(this.movies)
         })
         .catch(error => console.log('error', error));
 
         this.$emitter.on('filterMovies' , (nameMovie) => {
-                let search = this.movies.filter(req => req.title.toLowerCase().includes(nameMovie.toLowerCase()))
 
-                console.log(search)
+            let nameSearch = nameMovie.title          
+            let search = this.moviesTitle.filter(req => req.title.toLowerCase().includes(nameSearch.toLowerCase()))
+            
+            if(search.length > 0) {
+                this.movies = search
+            } else {
+                this.movies = this.moviesTitle
+            }
         })
     }
 }
@@ -45,12 +51,13 @@ export default {
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
+        background-color: #ccc;
     }
 
     .box {
         width: 200px;
         height: 330px;
-        background-color: #ccc;
+        background-color: #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;

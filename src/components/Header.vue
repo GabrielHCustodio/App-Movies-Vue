@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="header-logo">
-            
+            <p class="logo">MyFilmes.com</p>
         </div>
 
         <div>
@@ -26,14 +26,20 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background: rgb(0, 110, 255);
+    background: #ff4e4e;
     padding: 10px;
 }
 
 .header-logo {
-    width: 140px;
-    height: 60px;
-    background: #ccc;
-    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-logo .logo {
+    margin-left: 40px;
+    font-size: 1.7rem;
+    font-weight: bold;
+    font-style: italic;
 }
 </style>
