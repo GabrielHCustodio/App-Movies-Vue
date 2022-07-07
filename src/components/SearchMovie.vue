@@ -1,7 +1,6 @@
 <template>
     <div class="header-input">
         <input type="text" placeholder="Nome do filme..." v-model="nameMovie">
-        <img :src="search" alt="" @click="pesquisarNome">
     </div>
 </template>
 
@@ -14,9 +13,9 @@ export default {
             nameMovie: ''
         }
     },
-    methods: {
-        pesquisarNome() {
-            this.$emitter.emit('filterMovies', { title: this.nameMovie })
+    watch: {
+        nameMovie(value) {
+            this.$emitter.emit('filterMovies', { title: value })
         }
     }
 }
