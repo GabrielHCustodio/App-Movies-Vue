@@ -1,6 +1,6 @@
 <template>
     <div class="header-input">
-        <input type="text" placeholder="Nome do filme..." v-model="nameMovie">
+        <input type="text" placeholder="Movie name..." v-model="nameMovie">
     </div>
 </template>
 
@@ -39,5 +39,14 @@ export default {
     margin-left: 10px;
     width: 35px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .header-input {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 </style>

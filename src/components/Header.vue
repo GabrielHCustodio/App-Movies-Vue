@@ -42,4 +42,22 @@ export default {
     font-weight: bold;
     font-style: italic;
 }
+
+@media screen and (max-width: 600px) {
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header-logo {
+        width: 100%;
+    }
+
+    .header-logo p {
+        width: 100%;
+        text-align: center;
+    }
+}
 </style>
