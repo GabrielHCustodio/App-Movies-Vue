@@ -53,6 +53,8 @@ export default {
 
     .header-logo {
         width: 100%;
+        margin-bottom: 20px;
+        margin-right: 30px;
     }
 
     .header-logo p {
