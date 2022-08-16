@@ -58,8 +58,8 @@ export default {
     }
 
     .header-logo p {
-        width: 100%;
-        text-align: center;
+        margin-right: 50px;
+        margin-bottom: 15px;
     }
 }
 </style>
